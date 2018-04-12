@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block search %}
+$( "#fromdate" ).datepicker({
+    dateFormat: "yy-mm-dd"
+});
+$( "#todate" ).datepicker({
+    dateFormat: "yy-mm-dd"
+});
+{% endblock %}
+{% block content %}
+    <br>
+    <br>
+    <form method="POST" action="search" >
+        {% csrf_token %}
+        <table>
+            <tr>
+            <td>
+            From Date:
+            </td>
+            <td>
+            <input type="text" name="fromdate" id="fromdate">
+            </td>
+            </tr>
+            <tr>
+            <td>
+            To Date:
+            </td>
+            <td>
+            <input type="text" name="todate" id="todate">
+            </td>
+            </tr>
+        </table>
+        <br>
+           <button type="submit" class="btn btn-primary btn-lg active">Search</button>
+    </form>
+    <br>
+    <table class="table table-bordered ">
+        <tr>
+            <th> Date </th>
+            <th> Travel </th>
+            <th> Food </th>
+            <th> Miscellaneous </th>
+            <th> Description</th>
+            <th> Total Expense</th>
+        </tr>
+    {% for expense in expenses %}
+        <tr>
+            <td>{{expense.date}}</td>
+            <td>{{expense.travel}}</td>
+            <td>{{expense.food}}</td>
+            <td>{{expense.miscellaneous}}</td>
+            <td>{{expense.descr}}</td>
+            <td>{{expense.total_expense}}</td>
+            <td> <a href="{% url 'delete' pk=expense.pk %}"> Delete </a> </td>
+            <td> <a href="{% url 'update' pk=expense.pk %}"> Update </a> </td>
+        </tr>
+    {% endfor %}  
+    </table>
+    <h4> Total Expense : {{total}}</h4>
+    <a href="{% url 'index'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Home </a>
+{% endblock %}

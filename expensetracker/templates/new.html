@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block bootstrap %}
+    {% load bootstrap3 %}
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div> 
+    <form method="POST" action="new">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary btn-lg active">Add</button>
+        <a href="{% url 'index' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Cancel </a>
+        <br>
+    </form>
+    <br>
+    <br>
+    </div>
+{% endblock %}

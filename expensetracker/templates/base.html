@@ -1,0 +1,105 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Expense Tracker</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css'%}">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="{% static 'device-mockups/device-mockups.min.css'%}">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/new-age.min.css'%}" rel="stylesheet">
+    {% block boostrap %}
+    {%endblock%}
+
+    <style type="text/css">
+      .chart {
+          background-color: white;
+      }
+    </style>
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                {% if user.is_authenticated %}
+                  <a class="nav-link js-scroll-trigger" href="{% url 'logout' %}">logout</a>
+                {%else%}
+                <a class="nav-link js-scroll-trigger" href="{% url 'login' %}">login</a>
+                {%endif%}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <header class="masthead">
+        <div class="container h-100 col-md-7">
+          {% if messages %}
+            <br>
+            {% for message in messages %}
+              <div class="alert alert-danger" role="alert">
+                  {{message}}
+              </div>
+            {%endfor %}
+          {%endif%}
+          {% block header %}
+          {% endblock %}
+          {% block content %}
+          {%endblock%}
+        </div>
+    </header>
+    <footer>
+      <div class="container">
+        <p>&copy; Sajjan 2018. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <!-- Plugin JavaScript -->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script>
+        $( function() {
+            $( "#datefield" ).datepicker();
+            {% block search %}
+            {% endblock %}
+            {% block chart%}
+            {% endblock%}
+        });
+    </script>
+    <!-- Custom scripts for this template -->
+    <script src="{% static 'js/new-age.min.js' %}"></script>
+
+  </body>
+
+</html>

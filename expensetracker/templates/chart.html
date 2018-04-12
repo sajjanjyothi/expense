@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block chart %}
+    var expensedata = []
+    {% for expense in expenses %}
+        expensedata.push({{expense}})
+    {%endfor%}
+    var ctx = document.getElementById('expensechart').getContext('2d');
+    var chart = new Chart(ctx, {
+            type: 'bar',
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
+        datasets: [{
+            label: "Total Expense",
+            backgroundColor: 'rgb(244, 167, 66)',
+            borderColor: 'rgb(130, 47, 42)',
+            data: expensedata,
+            }]
+        },
+        options: {}
+    });
+
+{%endblock%}
+
+{% block content %}
+    <br>
+    <br>
+    <div>
+    <center><h3><b>Expense Chart </b></h3></center>
+    </div>
+    <div class ="container chart">
+    <canvas id="expensechart"></canvas>
+    </div>
+    <br>
+    <br>
+    <div>
+            <a href="{% url 'index' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Home </a>
+    </div>
+{% endblock %}

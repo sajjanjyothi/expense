@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="row h-100">
+    <div class="col-lg-7 my-auto">
+      <div class="header-content mx-auto">
+        <h1 class="mb-5">Expense Tracker</h1>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+        <div class="row h-100">
+          <div class=" my-auto">
+            <div class="header-content mx-auto">
+              <a href="{% url 'new' %}" class="btn btn-outline btn-xl js-scroll-trigger btn-block">New Entry</a>
+            </div>
+            <br>
+            <div class="header-content ">
+                <a href="{% url 'list' %}" class="btn btn-outline btn-xl js-scroll-trigger btn-block">List Expenses</a>
+            </div>
+            <br>
+            <div class="header-content mx-auto">
+                <a href="{% url 'export'%}" class="btn btn-outline btn-xl js-scroll-trigger btn-block">Export Data</a>
+            </div>
+            <br>
+            <div class="header-content mx-auto">
+                <a href="{% url 'chart' %}" class="btn btn-outline btn-xl js-scroll-trigger btn-block">Expense Charts</a>
+            </div>
+          </div>
+        </div>
+{%endblock%}
