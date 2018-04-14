@@ -149,6 +149,7 @@ section h2 {
 }
 
 header.masthead {
+  height:auto;
   position: relative;
   width: 100%;
   padding-top: 150px;
@@ -181,7 +182,7 @@ header.masthead .device-container .screen img {
 
 @media (min-width: 992px) {
   header.masthead {
-    height: 100vh;
+    height: auto;
     min-height: 775px;
     padding-top: 0;
     padding-bottom: 0;
